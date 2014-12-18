@@ -1,9 +1,40 @@
+# -*- encoding: utf-8; indent-tabs-mode: nil -*-
+#
+#     Test script for DateTime::Calendar::FrenchRevolutionary
+#     Copyright (C) 2003, 2004, 2010, 2011, 2012, 2014 Jean Forget
+#
+#     This program is distributed under the same terms as Perl 5.16.3:
+#     GNU Public License version 1 or later and Perl Artistic License
+#
+#     You can find the text of the licenses in the F<LICENSE> file or at
+#     L<http://www.perlfoundation.org/artistic_license_1_0>
+#     and L<http://www.gnu.org/licenses/gpl-1.0.html>.
+#
+#     Here is the summary of GPL:
+#
+#     This program is free software; you can redistribute it and/or modify
+#     it under the terms of the GNU General Public License as published by
+#     the Free Software Foundation; either version 1, or (at your option)
+#     any later version.
+#
+#     This program is distributed in the hope that it will be useful,
+#     but WITHOUT ANY WARRANTY; without even the implied warranty of
+#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#     GNU General Public License for more details.
+#
+#     You should have received a copy of the GNU General Public License
+#     along with this program; if not, write to the Free Software Foundation,
+#     Inc., <http://www.fsf.org/>.
+#
 #
 # Checking the (lack of) support of time zones
 # It is noon in Paris, several people around the world simultaneously want to know
 # which time it is.
 use DateTime::Calendar::FrenchRevolutionary;
 use DateTime;
+use utf8;
+use strict;
+use warnings;
 
 sub g2r {
   my ($n, $date_r1, $tz) = @_;
@@ -28,7 +59,7 @@ my @tests = (["0211 07 29 5 00 00", "Europe/Paris"]
            , ["0211 07 29 9 16 66", "Pacific/Auckland"]  #  10 ABT hours, -416.67 d-minutes
            , ["0211 07 29 0 00 00", "Pacific/Tahiti"]    # -12 ABT hours, -500    d-minutes
            , ["0211 07 28 9 58 33", "Pacific/Pago_Pago"] # -13 ABT hours, -541.67 d-minutes
-	     );
+             );
 
 my $nb_tests = @tests;
 my $n = 1;

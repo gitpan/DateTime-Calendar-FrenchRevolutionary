@@ -1,11 +1,19 @@
-# Copyright (c) 2003, 2004, 2010, 2011 Jean Forget. All rights reserved.
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
+#
+# Perl DateTime extension for providing French strings for the French Revolutionary calendar
+# Copyright (c) 2003, 2004, 2010, 2011, 2014 Jean Forget. All rights reserved.
+#
+# See the license in the embedded documentation below.
+#
 
 package DateTime::Calendar::FrenchRevolutionary::Locale::fr;
 
+use utf8;
+use strict;
+use warnings;
 use vars qw($VERSION);
 
-$VERSION = '0.11'; # same as parent module DT::C::FR
+$VERSION = '0.12'; # same as parent module DT::C::FR
 
 my @months_short  = qw (Vnd Bru Fri Niv Plu Vnt Ger Flo Pra Mes The Fru S-C);
 #my @add_days_short= qw (Vertu Génie Trav Raison Récomp Révol);
@@ -240,17 +248,15 @@ sub default_datetime_format { join ' ', ( $_[0]->default_date_format, $_[0]->def
 sub default_date_format_length { $default_date_format_length }
 sub default_time_format_length { $default_time_format_length }
 
-sub month_names         { [ @months ] }
-sub month_abbreviations { [ @months_short ] }
-sub day_names           { [ @decade_days ] }
-sub day_abbreviations   { [ @decade_days_short ] }
-sub am_pms              { [ @am_pms ] }
-sub date_formats                   { \%date_formats                   }
-sub time_formats                   { \%time_formats                   }
-sub date_before_time               { $date_before_time                }
-sub _default_date_format_length    { $default_date_format_length      }
-sub _default_time_format_length    { $default_time_format_length      }
-sub date_parts_order               { $date_parts_order                }
+sub month_names                { [ @months ] }
+sub month_abbreviations        { [ @months_short ] }
+sub day_names                  { [ @decade_days ] }
+sub day_abbreviations          { [ @decade_days_short ] }
+sub am_pms                     { [ @am_pms ] }
+sub date_formats               { \%date_formats         }
+sub time_formats               { \%time_formats         }
+sub date_before_time           { $date_before_time      }
+sub date_parts_order           { $date_parts_order      }
 
 sub on_date {
   my ($self, $date) = @_;
@@ -261,24 +267,24 @@ sub on_date {
 sub _load_events {
   %event = ('dummy', split /(\d{4})\n/, <<'EVENTS');
 0101
-1 Vendémiaire I. Entrée des troupes françaises en Savoie
+1 Vendémiaire I Entrée des troupes françaises en Savoie.
 
-1 Vendémiaire III. Les postes du bois d'Aix-la-Chapelle et de Reckem sont enlevés 
+1 Vendémiaire III Les postes du bois d'Aix-la-Chapelle et de Reckem sont enlevés 
 par l'Armée du Nord.
 
 0102
-2 Vendémiaire I. Conquête de Chambéry.
+2 Vendémiaire I Conquête de Chambéry.
 
-2 Vendémiaire III. Prise de la redoute et du camp de Costouge par l'Armée des
+2 Vendémiaire III Prise de la redoute et du camp de Costouge par l'Armée des
 Pyrénées orientales.
 
-2 Vendémiaire V. L'Armée d'Italie met en déroute l'ennemi à Governolo.
+2 Vendémiaire V L'Armée d'Italie met en déroute l'ennemi à Governolo.
 
 0103
-3 Vendémiaire IV. Affaire de Garesio
+3 Vendémiaire IV Affaire de Garesio.
 
 0104
-4 Vendémiaire II. L'Armée des Alpes enlève de vive force les retranchements
+4 Vendémiaire II L'Armée des Alpes enlève de vive force les retranchements
 de Chatillon ; les Piémontais sont mis en déroute et repassent la rivière de Giffe.
 
 0105
@@ -286,19 +292,19 @@ de Chatillon ; les Piémontais sont mis en déroute et repassent la rivière de 
 Espagnols à Olia et Monteilla.
 
 0106
-6 Vendémiaire III. Capitulation de Crevecœur devant l'Armée du Nord.
+6 Vendémiaire III Capitulation de Crevecœur devant l'Armée du Nord.
 
 6 Vendémiaire III Armée du Rhin. Reprise de Kayserlautern et d'Alsborn.
 
 6 Vendémiaire V Armée de Sambre et Meuse. L'ennemi attaque sur les
 points de Wurstatt, Nider-Ulm, Ober et Nider-Ingelheim et est repoussé.
 
-6 Vendémiaire XII Naissance de Prosper Mérimée
+6 Vendémiaire XII Naissance de Prosper Mérimée, écrivain français.
 
 0107
-7 Vendémiaire I. Prise de la ville de Nice et de la forteresse de Montalban.
+7 Vendémiaire I Prise de la ville de Nice et de la forteresse de Montalban.
 
-7 Vendémiaire II. L'Armée des Alpes défait l'ennemi dans les gorges
+7 Vendémiaire II L'Armée des Alpes défait l'ennemi dans les gorges
 de Sallanges et prend la redoute de Saint-Martin.
 
 0108
@@ -306,9 +312,9 @@ de Sallanges et prend la redoute de Saint-Martin.
 se procurer du fourrage et doivent se rendre aux habitants de Reggio.
 
 0109
-9 Vendémiaire I. Les Français se rendent maîtres de la ville de Spire.
+9 Vendémiaire I Les Français se rendent maîtres de la ville de Spire.
 
-9 Vendémiaire II. L'Armée des Alpes enlève de vive-force les
+9 Vendémiaire II L'Armée des Alpes enlève de vive-force les
 retranchements de Mont-Cormet tenus par les Piémontais.
 
 0111
@@ -319,83 +325,83 @@ Madeleine.
 11 Vendémiaire III Armée de Sambre-et-Meuse. Bataille d'Aldenhoven
 et déroute des troupes coalisées.
 
-11 Vendémiaire V. L'Armée du Rhin et Moselle attaque sur toute la
+11 Vendémiaire V L'Armée du Rhin et Moselle attaque sur toute la
 ligne et met l'ennemi en déroute.
 
 0112
-12 Vendémiaire II. Les Espagnols sont forcés dans leurs camps du Boulon 
+12 Vendémiaire II Les Espagnols sont forcés dans leurs camps du Boulon 
 et Argelès par l'Armée des Pyrénées orientales.
 
-12 Vendémiaire III. Le pays de Juliers se rend à l'Armée de Sambre-et-Meuse.
+12 Vendémiaire III Le pays de Juliers se rend à l'Armée de Sambre-et-Meuse.
 
 0113
-13 Vendémiaire I. Les Autrichiens sont forcés d'évacuer la ville de Worms.
+13 Vendémiaire I Les Autrichiens sont forcés d'évacuer la ville de Worms.
 
 13 Vendémiaire II Armée des Pyrénées orientales. Prise de Campredon et
 déroute de la cavalerie espagnole par la garnison de Colioure.
 
-13 Vendémiaire II. L'Armée des Pyrénées occidentales attaque les postes d'Arau
+13 Vendémiaire II L'Armée des Pyrénées occidentales attaque les postes d'Arau
 et de la vallée d'Aure et les enlève.
 
-13 Vendémiaire IV. Bonaparte réprime une manifestation royaliste à l'église Saint-Roch
+13 Vendémiaire IV Bonaparte réprime une manifestation royaliste à l'église Saint-Roch.
 
 0115
-15 Vendémiaire III. Cologne se rend à l'Armée de Sambre-et-Meuse.
+15 Vendémiaire III Cologne se rend à l'Armée de Sambre-et-Meuse.
 
 0116
-16 Vendémiaire V. L'ennemi, bloqué à Mantoue par l'Armée d'Italie tente
+16 Vendémiaire V L'ennemi, bloqué à Mantoue par l'Armée d'Italie tente
 une sortie de 4 600 hommes, sortie qui se solde par un échec.
 
 0117
-17 Vendémiaire I. Les Autrichiens lèvent le siège de Lille.
+17 Vendémiaire I Les Autrichiens lèvent le siège de Lille.
 
-17 Vendémiaire III. Combat et prise de Frankenthal par l'Armée du Rhin
+17 Vendémiaire III Combat et prise de Frankenthal par l'Armée du Rhin.
 
 0118
-18 Vendémiaire II. Bombardement de Lyon.
+18 Vendémiaire II Bombardement de Lyon.
 
-18 Vendémiaire III. Prise de Shelaudenbach et de Vollfstein par l'Armée du Rhin
+18 Vendémiaire III Prise de Shelaudenbach et de Vollfstein par l'Armée du Rhin
 et jonction avec l'Armée de la Moselle à Lautreck.
 
 0119
-19 Vendémiaire III. Devant Maestricht, l'Armée de Sambre-et-Meuse reprend
+19 Vendémiaire III Devant Maestricht, l'Armée de Sambre-et-Meuse reprend
 le château de Mont-Saint-Pierre.
 
 0120
-20 Vendémiaire III. L'Armée de la Moselle marche sur Birkenfeldt, Oberstein,
+20 Vendémiaire III L'Armée de la Moselle marche sur Birkenfeldt, Oberstein,
 Kirn et Meisenheim.
 
 0121
-21 Vendémiaire III. Entrée de l'Armée du Nord dans Bois-le-Duc.
+21 Vendémiaire III Entrée de l'Armée du Nord dans Bois-le-Duc.
 
 0122
-22 Vendémiaire I. Kellerman force les Prussiens à évacuer la ville de Verdun.
+22 Vendémiaire I Kellerman force les Prussiens à évacuer la ville de Verdun.
 
 0123
-23 Vendémiaire III. L'Armée du Rhin prend Otterberg, Rockenhausen, 
+23 Vendémiaire III L'Armée du Rhin prend Otterberg, Rockenhausen, 
 Landsberg, Alzein et Oberhausen.
 
 0124
-24 Vendémiaire II. L'Armée de la Moselle combat et provoque la retraite
+24 Vendémiaire II L'Armée de la Moselle combat et provoque la retraite
 précipitée des coalisés qui s'étaient portés sur Bitche et Rorbach.
 
-24 Vendémiaire III. Combat et prise de Gellheim et de Grunstad par 
+24 Vendémiaire III Combat et prise de Gellheim et de Grunstad par 
 l'Armée du Rhin ; les Français reprennent aussi Frankenthal.
 
 0125
-25 Vendémiaire II. Combat près de Sarreguemines ; l'Armée de la Moselle
+25 Vendémiaire II Combat près de Sarreguemines ; l'Armée de la Moselle
 repousse l'ennemi.
 
-25 Vendémiaire II. Exécution de Marie-Antoinette.
+25 Vendémiaire II Exécution de Marie-Antoinette.
 
 0126
-26 Vendémiaire I. Les Autrichiens attaquent plusieurs fois inutilement Hasnon
+26 Vendémiaire I Les Autrichiens attaquent plusieurs fois inutilement Hasnon
 et sont repoussés avec perte.
 
-26 Vendémiaire II. La bataille de Wattignies près de Maubeuge est remportée
+26 Vendémiaire II La bataille de Wattignies près de Maubeuge est remportée
 par l'Armée du Nord sur les Autrichiens et le blocus de Maubeuge est levé.
 
-26 Vendémiaire III. L'Armée des Pyrénées occidentales prend la 
+26 Vendémiaire III L'Armée des Pyrénées occidentales prend la 
 mâture d'Iraty et les fonderies d'Egay et d'Orbaycette.
 
 26 Vendémiaire III Armée de la Moselle. Prise de Creutznach et de Worms.
@@ -404,35 +410,35 @@ mâture d'Iraty et les fonderies d'Egay et d'Orbaycette.
 près d'Udine entre le général Bonaparte et les plénipotentiaires de l'Empereur,
 roi de Hongrie et de Bohême.
 
-26 Vendémiaire VI. Congrès à Rastadt pour la conclusion de la paix entre
+26 Vendémiaire VI Congrès à Rastadt pour la conclusion de la paix entre
 la République française et l'Empire germanique.
 
 0127
-27 Vendémiaire II. 600 républicains de l'Armée d'Italie remportent
+27 Vendémiaire II 600 républicains de l'Armée d'Italie remportent
 l'avantage à Gillette sur 4 000 Autrichiens, Croates et Piémontais et les
 repoussent.
 
-27 Vendémiaire III. L'Armée des Pyrénées occidentales défait 7 000 
+27 Vendémiaire III L'Armée des Pyrénées occidentales défait 7 000 
 Espagnols près de Buruet et d'Almandos.
 
-27 Vendémiaire III. L'Armée du Rhin met en déroute l'ennemi près
+27 Vendémiaire III L'Armée du Rhin met en déroute l'ennemi près
 de Kircheim et de Worms et prend ces deux villes.
 
 0128
-28 Vendémiaire II. L'Armée d'Italie remporte
+28 Vendémiaire II L'Armée d'Italie remporte
 une victoire complète à Gilette sur les Piémontais.
 
-28 Vendémiaire III. L'Armée du Nord défait l'ennemi près de Nimègue
+28 Vendémiaire III L'Armée du Nord défait l'ennemi près de Nimègue
 et détruit la légion de Rohan.
 
-28 Vendémiaire V. L'Armée du Rhin et Moselle est attaquée à Retzengen
+28 Vendémiaire V L'Armée du Rhin et Moselle est attaquée à Retzengen
 et à Simonswald.
 
 0129
-29 Vendémiaire I. L'Armée française force les
+29 Vendémiaire I L'Armée française force les
 Autrichiens à évacuer Mayence.
 
-29 Vendémiaire III. L'Armée de la Moselle entre dans Bingen
+29 Vendémiaire III L'Armée de la Moselle entre dans Bingen
 après avoir chassé les Prussiens des positions qu'ils tenaient en avant
 de la ville.
 
@@ -442,7 +448,7 @@ de Bastia, de Saint-Florent et de Bonifacio.
 29 Vendémiaire XIV Bataille de Trafalgar.
 
 0130
-30 Vendémiaire II. L'Armée des Pyrénées occidentales met
+30 Vendémiaire II L'Armée des Pyrénées occidentales met
 en déroute trois colonnes espagnoles après une fusillade de cinq heures.
 
 30 Vendémiaire V Armée de Sambre et Meuse. L'ennemi passe le Rhin sur
@@ -510,7 +516,7 @@ d'une batterie ennemie, en avant de Ville longue.
 sur les revers de la montagne Noire.
 
 0212
-12 Brumaire I. Les Autrichiens sont forcés d'évacuer Lanoy.
+12 Brumaire I Les Autrichiens sont forcés d'évacuer Lanoy.
 
 12 Brumaire III Armée de la Moselle. Entrée des Français dans
 Rheinfels, évacué par douze cents ennemis.
@@ -528,7 +534,7 @@ Segonzano.
 obligé de la repasser après un combat meurtrier.
 
 0216
-16 Brumaire I. Bataille de Gemmapes. Les Français entrent dans Mons.
+16 Brumaire I Bataille de Gemmapes. Les Français entrent dans Mons.
 
 16 Brumaire III Armée du Nord. Prise du fort de Schenk.
 
@@ -537,12 +543,12 @@ obligé de la repasser après un combat meurtrier.
 Berg-op-zomm est repoussée.
 
 0218
-18 Brumaire I. Prise de la ville de Tournay par les Français.
+18 Brumaire I Prise de la ville de Tournay par les Français.
 
 18 Brumaire III Armée du Nord. Entrée triomphante des Français dans
 Nimègue.
 
-18 Brumaire VIII. Coup d'état de Bonaparte : fin du Directoire, début du Consulat
+18 Brumaire VIII Coup d'état de Bonaparte : fin du Directoire, début du Consulat.
 
 0219
 19 Brumaire IV Armée du Nord. Prise de Burick.
@@ -560,7 +566,7 @@ le poursuit l'espace de trois milles.
 22 Brumaire I Armée du Nord. La ville de Gand ouvre ses portes à
 l'armée française.
 
-22 Brumaire I. Prise de Charleroy par les Français.
+22 Brumaire I Prise de Charleroy par les Français.
 
 22 Brumaire III Armée du Rhin. Prise de Monbach et de tous les postes
 de la forêt en avant de ce village.
@@ -568,12 +574,12 @@ de la forêt en avant de ce village.
 22 Brumaire III Armée du Rhin. Prise de Weissenau.
 
 0223
-23 Brumaire I. Bataille d'Anderlecht près Bruxelles. Défaite
+23 Brumaire I Bataille d'Anderlecht près Bruxelles. Défaite
 complète de l'ennemi, l'armée française fait son entrée triomphante
 dans Bruxelles.
 
 0224
-24 Brumaire I. Prise de la ville de Francfort.
+24 Brumaire I Prise de la ville de Francfort.
 
 24 Brumaire II Armée de l'Ouest. Défaite des rebelles de la Vendée
 sous les murs de Granville.
@@ -582,19 +588,19 @@ sous les murs de Granville.
 25 Brumaire V Armée d'Italie. Bataille d'Arcole, conclue le 27.
 
 0226
-26 Brumaire I. Les Français se rendent maîtres de la ville et du port
+26 Brumaire I Les Français se rendent maîtres de la ville et du port
 d'Ostende, évacué par les Autrichiens.
 
-26 Brumaire I. Prise de Sainte-Remi.
+26 Brumaire I Prise de Sainte-Remi.
 
-26 Brumaire I. Capitulation de la ville de Malines.
+26 Brumaire I Capitulation de la ville de Malines.
 
 26 Brumaire II Armée du Rhin. L'armée surprend et enlève près de
 Strasbourg trois postes ennemis vaillamment défendus.
 
 26 Brumaire II Le siège de la ville de Granville est levé.
 
-26 Brumaire IV. Combat du champ di Pietri.
+26 Brumaire IV Combat du champ di Pietri.
 
 0227
 27 Brumaire II Armée de la Moselle. Défaite autrichienne
@@ -623,7 +629,7 @@ Parme.
 29 Brumaire II L'Armée du Rhin enlève deux redoutes formidables près
 de Bouxweiller.
 
-29 Brumaire VIII Naissance de René Caillé, le premier européen à entrer à Tombouctou
+29 Brumaire VIII Naissance de René Caillé, le premier européen à entrer à Tombouctou.
 
 0230
 30 Brumaire II Armée des Pyrénées orientales. Bataille gagnée à Escola,
@@ -661,7 +667,7 @@ garnison de Kehl.
 0303
 3 Frimaire IV Armée d'Italie. Combat d'Intrapa et de Garesio.
 
-3 Frimaire V. Sortie faite par la garnison de Mantoue, qui est
+3 Frimaire V Sortie faite par la garnison de Mantoue, qui est
 brusquement repoussée.
 
 0304
@@ -687,7 +693,7 @@ de Figuières.
 Espagnols à Begara, Ascuatia et Aspetia.
 
 0310
-10 Frimaire I Armée du Nord. Capitulation de la citadelle d'Anvers
+10 Frimaire I Armée du Nord. Capitulation de la citadelle d'Anvers.
 
 10 Frimaire II Armée du Nord. Attaque des postes ennemis sur
 la Lys.
@@ -705,12 +711,12 @@ Landgraben et des retranchements de Gambsheim.
 11 Frimaire III Armée du Rhin et Moselle. Enlèvement de la redoute,
 dite de Merlin, devant Mayence.
 
-11 Frimaire V. L'ennemi attaque la tête du pont d'Huningue et s'empare
+11 Frimaire V L'ennemi attaque la tête du pont d'Huningue et s'empare
 de la demi-lune mais en est délogé.
 
-11 Frimaire XIII. Napoléon Premier est couronné Empereur des Français
+11 Frimaire XIII Napoléon Premier est couronné Empereur des Français.
 
-11 Frimaire XIV. Bataille d'Austerlitz : l'armée française écrase l'armée austro-russe
+11 Frimaire XIV Bataille d'Austerlitz : l'armée française écrase l'armée austro-russe.
 
 0312
 12 Frimaire II Armée des Ardennes. Vigoureuse sortie de la garnison
@@ -732,7 +738,7 @@ vive force les redoutes de Salbach.
 une action très vive.
 
 0320
-20 Frimaire XII Naissance d'Hector Berlioz
+20 Frimaire XII Naissance d'Hector Berlioz, musicien français.
 
 0321
 21 Frimaire I Armée du Nord. Prise des villes de Wezem et de Wert et
@@ -747,7 +753,7 @@ de la Vendée, près et dans la ville du Mans.
 près de Saint-Jean-de-Luz ; ils sont forcés de repasser la Bidassoa.
 
 0324
-24 Frimaire I. Après plusieurs combats, les troupes françaises se
+24 Frimaire I Après plusieurs combats, les troupes françaises se
 rendent maîtres des villes de Mertzicq, de Fredembourg et de
 Saarbruck.
 
@@ -759,7 +765,7 @@ hauteurs de Marsal du Dahnbruck et de Lambach.
 force les retranchements et redoutes qui défendaient Toulon.
 
 0326
-26 Frimaire I. Prise de Consarbruck.
+26 Frimaire I Prise de Consarbruck.
 
 26 Frimaire II Armée d'Italie. Prise de Toulon, fuite précipitée des
 Anglais et des Espagnols.
@@ -869,7 +875,7 @@ Bas-Rhin par les coalisés ; reprise du fort Vauban.
 29 Nivôse III Armée du Nord. Prise de Gertuydemberg.
 
 0430
-30 Nivôse VI Naissance d'Auguste Comte
+30 Nivôse VI Naissance d'Auguste Comte, philosophe français.
 
 0502
 2 Pluviôse I Exécution de Louis XVI.
@@ -906,7 +912,7 @@ Républicains sur deux colonnes, font une sortie de la tête de pont
 d'Huningue et chassent l'ennemi des deux premières parallèles.
 
 0513
-13 Pluviôse I. La république française déclare la guerre au roi
+13 Pluviôse I La république française déclare la guerre au roi
 d'Angleterre et au stathouder de Hollande.
 
 13 Pluviôse VI Armée d'Italie. Une des colonnes de l'armée d'Italie,
@@ -939,7 +945,7 @@ par cinq mille républicains.
 sur la droite de l'Adige ; prise de Derunbano.
 
 0520
-20 Pluviôse IV Naissance de Barthélémy Prosper Enfantin
+20 Pluviôse IV Naissance de Barthélémy Prosper Enfantin, membre du mouvement saint-simonien.
 
 0521
 21 Pluviôse V Armée d'Italie. Prise d'Ancône.
@@ -974,7 +980,7 @@ Les Français, attaqués à Bidole, battent complètement l'ennemi.
 Kellerman passe la Piave à San-Mamma, et met en fuite des hussards ennemis.
 
 0607
-7 Ventôse X. Naissance de Victor Hugo
+7 Ventôse X. Naissance de Victor Hugo.
 
 0611
 11 Ventôse III Armée des Pyrénées orientales. Prise de Bezalu.
@@ -991,23 +997,23 @@ di-Savaro et le défont.
 défaite de l'ennemi.
 
 0617
-17 Ventôse I. Déclaration de guerre au roi d'Espagne.
+17 Ventôse I Déclaration de guerre au roi d'Espagne.
 
 0618
 18 Ventôse II Armée de la Moselle. Défaite de trois bataillons
 autrichiens sur les hauteurs des forges de Jœgerthal.
 
 0620
-20 Ventôse V. Armée d'Italie. Une division de l'armée française se
+20 Ventôse V Armée d'Italie. Une division de l'armée française se
 rend à Feltre ; à son approche l'ennemi évacue la ligne de Cordevole
 et se porte sur Bellurn.
 
 0622
-22 Ventôse V. Armée d'Italie. Passage de la Piave vis-à-vis le
+22 Ventôse V Armée d'Italie. Passage de la Piave vis-à-vis le
 village de Vidor, l'ennemi évacue son camp de la Gampana.
 
 0623
-23 Ventôse V. Armée d'Italie. Combat de Sacile.
+23 Ventôse V Armée d'Italie. Combat de Sacile.
 Affaire de Bellurn, dans laquelle l'arrière-garde ennemie est
 enveloppée et faite prisonnière.
 
@@ -1067,7 +1073,7 @@ résistance, l'ennemi est mis en déroute.
 important.
 
 0707
-26 Germinal V Naissance d'Alfred de Vigny
+7 Germinal V Naissance d'Alfred de Vigny, poête français.
 
 0708
 8 Germinal V Armée d'Italie. Des bataillons ennemis, fraîchement
@@ -1159,7 +1165,7 @@ Austro-Sardes. Combat de Dego, déroute de l'ennemi. Combat et prise
 de Saint-Jean, dans la vallée de la Barmida. Prise de Batisolo, de
 Bagnosco et de Pontenocetto. Prise des redoutes de Montezemo.
 
-26 Germinal V Naissance d'Adolphe Thiers
+26 Germinal V Naissance d'Adolphe Thiers, écrivain et homme politique français.
 
 0727
 27 Germinal II Armée de la Moselle. Les Français occupent les
@@ -1226,7 +1232,7 @@ poste du rocher d'Arrola.
 Déroute de quatre mille hommes d'infanterie et de dix escadrons de
 cavalerie espagnole à Roqueluche ; perte considérable de l'ennemi.
 
-7 Floréal VI Naissance d'Eugène Delacroix
+7 Floréal VI Naissance d'Eugène Delacroix, peintre français.
 
 0808
 8 Floréal II Armée des Pyrénées orientales. Les Français, au nombre
@@ -1390,7 +1396,7 @@ Erquelinne, après un combat de six heures.
 1 Prairial IV Armée d'Italie. Conclusion d'une armistice avec le duc
 de Modène.
 
-1 Prairial VII. Naissance d'Honoré de Balzac
+1 Prairial VII Naissance d'Honoré de Balzac, écrivain français.
 
 0904
 4 Prairial II Armée du Rhin. Bataille de Schifferstadt, gagnée par
@@ -1424,7 +1430,7 @@ de Dinan.
 Armée des Pyrénées orientales. Evacuation par l'ennemi des forts
 Saint-Elme et Port-Vendre, reprise de Collioure.
 
-7 Prairial III. Dix mille hommes d'infanterie, et douze cents de
+7 Prairial III Dix mille hommes d'infanterie, et douze cents de
 cavalerie, espagnole attaquent une reconnaissance faite par les
 troupes du camp des hauteurs de Pontos ; mais ils sont mis en déroute.
 
@@ -1433,7 +1439,7 @@ troupes du camp des hauteurs de Pontos ; mais ils sont mis en déroute.
 7 Prairial V Exécution de Gracchus Babeuf.
 
 0908
-8 Prairial III. Traité de paix et d'alliance, conclu à la Haye, entre
+8 Prairial III Traité de paix et d'alliance, conclu à la Haye, entre
 la République française et les membres des états-généraux de Hollande.
 
 0911
@@ -1463,7 +1469,7 @@ Acher.
 14 Prairial II Armée des Ardennes. Déroute des ennemis, près du bois
 de Sainte-Marie.
 
-14 Prairial IV Naissance de Sadi Carnot
+14 Prairial IV Naissance de Sadi Carnot, homme politique français.
 
 0915
 15 Prairial II Armée des Pyrénées occidentales. Bataille gagnée sur
@@ -1529,7 +1535,7 @@ de Gosselies.
 24 Prairial III Armée de Sambre et Meuse. Prise de Luxembourg.
 
 0925
-25 Prairial VIII. Bataille de Marengo en Italie, Kléber est assassiné au Caire
+25 Prairial VIII Bataille de Marengo en Italie. Le général Kléber est assassiné au Caire le même jour.
 
 0926
 26 Prairial II Armée de la Moselle, des Ardennes, et du Nord réunies.
@@ -1637,7 +1643,7 @@ retranché de Deva.
 11 Messidor IV Armée d'Italie. Capitulation du château de Milan.
 
 1012
-12 Messidor XII Naissance de George Sand
+12 Messidor XII Naissance de George Sand, écrivain français.
 
 1013
 13 Messidor II Armée de Sambre et Meuse. Enlèvement des redoutes et
@@ -1821,7 +1827,7 @@ hauteurs en arrière de Tirlemont.
 3 Thermidor II Armée de Sambre et Meuse. Déroute de l'ennemi à Hui :
 prise de Saint-Tros.
 
-3 Thermidor III Victoire de Hoche à Quiberon contre les royalistes
+3 Thermidor III Victoire de Hoche à Quiberon contre les royalistes.
 
 1104
 4 Thermidor III Traité de paix conclu entre la République française et
@@ -1830,7 +1836,7 @@ le roi d'Espagne.
 4 Thermidor IV Armée de Sambre et Meuse. Prise de Schwinfurt.
 
 1105
-5 Thermidor X Naissance d'Alexandre Dumas père.
+5 Thermidor X Naissance d'Alexandre Dumas père, écrivain français.
 
 1106
 6 Thermidor II Armée des Pyrénées orientales. Entrée des républicains
@@ -1850,11 +1856,13 @@ Koenigstein.
 9 Thermidor I Armée de Sambre et Meuse. Entrée des Français dans
 Liège.
 
-9 Thermidor II. La chute de Robespierre.
+9 Thermidor II La chute de Robespierre.
 
 1110
 10 Thermidor II Armée du Nord. Prise de Cassandria et passage du
 Cacysche.
+
+10 Thermidor II Robespierre et plusieurs de ses partisans (Couthon, Saint-Just, etc) sont guillotinés.
 
 1111
 11 Thermidor III Armée des Alpes et d'Italie. Enlèvement des redoutes
@@ -1874,7 +1882,7 @@ L'ennemi est battu à Lonado.
 1114
 Armée d'Italie. Reprise de Brescia.
 
-14 Thermidor VII Naissance de Sophie Rostopchine, future comtesse de Ségur
+14 Thermidor VII Naissance de Sophie Rostopchine, future comtesse de Ségur.
 
 1115
 15 Thermidor IV Armée de Sambre et Meuse. prise de Koenigshoffen.
@@ -2173,7 +2181,7 @@ Lahn ; prise de Limbourg, Dietz et Nasseau.
 Armée d'Italie. Combat sur la ligne de Borghetto ; défaite des
 Autrichiens.
 
-3 jour complémentaire V. Mort du général Hoche, général en chef de
+3 jour complémentaire V Mort du général Hoche, général en chef de
 l'armée de Sambre et Meuse.
 
 1304
@@ -2188,7 +2196,7 @@ force des hauteurs de Clermont, après sept attaques successives.
 Armée d'Italie. Victoire du Cairo sur les Piémontais, soutenus par
 dix mille Autrichiens.
 
-4 jour complémentaire III. Reddition de Manheim par capitulation.
+4 jour complémentaire III Reddition de Manheim par capitulation.
 
 1305
 5 jour complémentaire II Armée des Pyrénées occidentales. Déroute des
@@ -2203,3 +2211,135 @@ EVENTS
 # A module must return a true value. Traditionally, a module returns 1.
 # But this module is a revolutionary one, so it discards all old traditions.
 "Dansons la carmagnole, vive le son du canon.";
+
+__END__
+
+=encoding utf8
+
+=head1 NAME
+
+DateTime::Calendar::FrenchRevolutionary::Locale::fr -- French localization for the French 
+revolutionary calendar.
+
+=head1 SYNOPSIS
+
+  use DateTime::Calendar::FrenchRevolutionary::Locale;
+  my $french_locale = DateTime::Calendar::FrenchRevolutionary::Locale->load('fr');
+
+  my $french_month_name =$french_locale->month_name($date);
+
+=head1 DESCRIPTION
+
+This module provides localization for DateTime::Calendar::FrenchRevolutionary.
+Usually, its methods will be invoked only from DT::C::FR.
+
+=head1 USAGE
+
+This module provides the following class methods:
+
+=over 4
+
+=item * new
+
+Returns an  object instance,  which is just  a convenient value  to be
+stored in a variable.
+
+Contrary to  the widely used Gregorian  calendar, there is  no need to
+customize a French Revolutionary calendar locale. Therefore, there are
+no instance data and no instance methods.
+
+=item * month_name ($date)
+
+Returns  the French  name for  C<$date>'s month,  where C<$date>  is a
+C<DateTime::Calendar::FrenchRevolutionary> object.
+
+=item * month_abbreviation ($date)
+
+Returns a 3-letter abbreviation for the French month name.
+
+=item * day_name ($date)
+
+Returns the French day name.
+
+=item * day_abbreviation ($date)
+
+Returns a 3-letter abbreviation for the French day name.
+
+=item * feast_short ($date)
+
+Returns  the name for  the plant,  animal or  tool that  correspond to
+C<$date>'s feast.
+
+=item * feast_long ($date)
+
+Same  as  C<feast_short>, with  a  "jour"  prefix.
+
+=item * feast_caps ($date)
+
+Same as C<feast_long> with capitalized first letters.
+
+=item * on_date ($date)
+
+Gives a small text about the  events which occurred the same month and
+day as C<$date> between the calendar's epoch (22 Sep 1792) and the day
+it was rescinded (31 Dec 1805).
+
+Most of these events come  from an anonymous propaganda book published
+in year  VIII (1799--1800). The others are  common knowledge available
+in any French History book or any encyclopedia.
+
+=back
+
+=head1 SUPPORT
+
+Support for this module is provided via the datetime@perl.org email
+list. See http://lists.perl.org/ for more details.
+
+=head1 AUTHOR
+
+Jean Forget <JFORGET@cpan.org>
+
+The development of this module is hosted by I<Les Mongueurs de Perl>,
+L<http://www.mongueurs.net/>.
+
+=head1 SEE ALSO
+
+=head2 Books
+
+Calendrier Militaire, anonymous
+
+=head2 Internet
+
+L<http://datetime.perl.org/>
+
+=head1 LICENSE STUFF
+
+Copyright (c)  2003, 2004, 2010,  2012, 2014 Jean Forget.   All rights
+reserved. This  program is free software. You  can distribute, modify,
+and otherwise mangle DateTime::Calendar::FrenchRevolutionary under the
+same terms as perl 5.16.3.
+
+This program is  distributed under the same terms  as Perl 5.16.3: GNU
+Public License version 1 or later and Perl Artistic License
+
+You can find the text of the licenses in the F<LICENSE> file or at
+L<http://www.perlfoundation.org/artistic_license_1_0> and
+L<http://www.gnu.org/licenses/gpl-1.0.html>.
+
+Here is the summary of GPL:
+
+This program is  free software; you can redistribute  it and/or modify
+it under the  terms of the GNU General Public  License as published by
+the Free  Software Foundation; either  version 1, or (at  your option)
+any later version.
+
+This program  is distributed in the  hope that it will  be useful, but
+WITHOUT   ANY  WARRANTY;   without  even   the  implied   warranty  of
+MERCHANTABILITY  or FITNESS  FOR A  PARTICULAR PURPOSE.   See  the GNU
+General Public License for more details.
+
+You  should have received  a copy  of the  GNU General  Public License
+along with this program; if not, see <http://www.gnu.org/licenses/> or
+write to the Free Software Foundation, Inc., L<http://fsf.org>.
+
+=cut

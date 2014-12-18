@@ -1,13 +1,19 @@
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
-# Copyright (c) 2003, 2004, 2010, 2011, 2012 Jean Forget. All rights reserved.
+#
+# Perl DateTime extension for converting to/from the French Revolutionary calendar
+# Copyright (c) 2003, 2004, 2010, 2011, 2012, 2014 Jean Forget. All rights reserved.
+#
+# See the license in the embedded documentation below.
+#
 
 package DateTime::Calendar::FrenchRevolutionary;
 
+use utf8;
 use strict;
+use warnings;
 
 use vars qw($VERSION);
-
-$VERSION = '0.11';
+$VERSION = '0.12';
 
 use Params::Validate qw(validate SCALAR BOOLEAN OBJECT);
 use Roman;
@@ -75,7 +81,7 @@ my $BasicValidate =
                       { "only 'fr' and 'en' possible" =>
                         sub { ($_[0] eq 'fr') or ($_[0] eq 'en') or ref($_[0]) =~ /(?:en|fr)$/ },
                       },
-                     default => 'fr' },
+                     default => DefaultLocale() },
     };
 
 my $NewValidate =
@@ -98,7 +104,6 @@ sub new {
     my $self = {};
 
     $self->{tz} = DateTime::TimeZone->new(name => 'floating');
-    $args{locale} = $class->DefaultLocale unless defined $args{locale};
     if ( ref $args{locale} )
       { $self->{locale} = $args{locale} }
     else
@@ -1414,9 +1419,32 @@ L<http://en.wikipedia.org/wiki/French_Republican_Calendar>
 
 =head1 LICENSE STUFF
 
-Copyright  (c)  2003,  2004,   2010,  2012  Jean  Forget.  All  rights
+Copyright (c)  2003, 2004, 2010,  2012, 2014 Jean Forget.   All rights
 reserved. This  program is free software. You  can distribute, modify,
 and otherwise mangle DateTime::Calendar::FrenchRevolutionary under the
-same terms as perl 5.12.2.
+same terms as perl 5.16.3.
+
+This program is  distributed under the same terms  as Perl 5.16.3: GNU
+Public License version 1 or later and Perl Artistic License
+
+You can find the text of the licenses in the F<LICENSE> file or at
+L<http://www.perlfoundation.org/artistic_license_1_0> and
+L<http://www.gnu.org/licenses/gpl-1.0.html>.
+
+Here is the summary of GPL:
+
+This program is  free software; you can redistribute  it and/or modify
+it under the  terms of the GNU General Public  License as published by
+the Free  Software Foundation; either  version 1, or (at  your option)
+any later version.
+
+This program  is distributed in the  hope that it will  be useful, but
+WITHOUT   ANY  WARRANTY;   without  even   the  implied   warranty  of
+MERCHANTABILITY  or FITNESS  FOR A  PARTICULAR PURPOSE.   See  the GNU
+General Public License for more details.
+
+You  should have received  a copy  of the  GNU General  Public License
+along with this program; if not, see <http://www.gnu.org/licenses/> or
+write to the Free Software Foundation, Inc., L<http://fsf.org>.
 
 =cut

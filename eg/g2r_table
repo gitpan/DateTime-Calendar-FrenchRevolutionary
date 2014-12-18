@@ -1,6 +1,13 @@
 #!/usr/local/bin/perl -w
-# Copyright (c) 2003, 2004, 2010, 2011 Jean Forget. All rights reserved.
+#
+#     Example script for DateTime::Calendar::FrenchRevolutionary:
+#     print a few tables for an easy conversion of dates from Gregorian to French Revolutionary
+#     Copyright (c) 2003, 2004, 2010, 2011, 2014 Jean Forget. All rights reserved.
+#
+#     See the license in the embedded documentation below.
+#
 
+use utf8;
 use strict;
 use Getopt::Long;
 use DateTime::Calendar::FrenchRevolutionary;
@@ -18,6 +25,8 @@ GetOptions('columns=i'        => \$columns
 die "At least 5 columns" if $columns < 5;
 die "The number of columns must be a multiple of 4 plus 1 (e.g. 5, 9 or 13)"
   unless $columns % 4 == 1;
+
+binmode STDOUT, ':utf8';
 
 --$columns; # because actually we do not want to be bothered with the heading column
 
@@ -109,6 +118,7 @@ else
   { $ref_labels = do "$FindBin::Bin/labels_en" }
 my %labels = %$ref_labels;
 
+html_0($labels{titleg2r});
 html_1($labels{title1});
 html_2($_) foreach (@parts);
 print "<p>\n";
@@ -117,6 +127,7 @@ print "<p>\n";
 print "<table><tr><td>\n" if $table_workaround;
 usage($example);
 print "</td></tr></table>\n" if $table_workaround;
+print "</body>\n</html>\n";
 
 #
 # Gives the letter for a year and a part
@@ -216,6 +227,19 @@ sub formulas {
     }
 
   @formulas;
+}
+
+sub html_0 {
+  my ($title) = @_;
+  print <<"EOF";
+<html>
+<head>
+<title>$title</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>$title</h1>
+EOF
 }
 
 sub html_1 {
@@ -469,5 +493,36 @@ triggers this workaround.
 
 Jean Forget <JFORGET@cpan.org>
 
+=head1 LICENSE STUFF
+
+Copyright (c)  2003, 2004, 2010,  2012, 2014 Jean Forget.   All rights
+reserved. This  program is free software. You  can distribute, modify,
+and otherwise mangle DateTime::Calendar::FrenchRevolutionary under the
+same terms as perl 5.16.3.
+
+This program is  distributed under the same terms  as Perl 5.16.3: GNU
+Public License version 1 or later and Perl Artistic License
+
+You can find the text of the licenses in the F<LICENSE> file or at
+L<http://www.perlfoundation.org/artistic_license_1_0> and
+L<http://www.gnu.org/licenses/gpl-1.0.html>.
+
+Here is the summary of GPL:
+
+This program is  free software; you can redistribute  it and/or modify
+it under the  terms of the GNU General Public  License as published by
+the Free  Software Foundation; either  version 1, or (at  your option)
+any later version.
+
+This program  is distributed in the  hope that it will  be useful, but
+WITHOUT   ANY  WARRANTY;   without  even   the  implied   warranty  of
+MERCHANTABILITY  or FITNESS  FOR A  PARTICULAR PURPOSE.   See  the GNU
+General Public License for more details.
+
+You  should have received  a copy  of the  GNU General  Public License
+along with this program; if not, see <http://www.gnu.org/licenses/> or
+write to the Free Software Foundation, Inc., L<http://fsf.org>.
+
+=cut
 
 
